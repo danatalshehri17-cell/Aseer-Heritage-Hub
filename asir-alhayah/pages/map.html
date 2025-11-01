@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الخريطة — عسير الحيّة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <span class="brand__logo">🌿</span>
+        <span class="brand__name">عسير الحيّة</span>
+      </div>
+      <nav class="nav">
+        <a href="../index.html" class="nav__link">الرئيسية</a>
+        <a href="./map.html" class="nav__link nav__link--active">الخريطة</a>
+        <a href="./museums.html" class="nav__link">المتاحف</a>
+        <a href="./vendors.html" class="nav__link">الأسر المنتجة</a>
+        <a href="./cart.html" class="nav__button">السلة/الحجوزات</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section__title">الخريطة التفاعلية</h1>
+      <div class="toolbar">
+        <input id="search" class="input" placeholder="ابحث باسم المتحف أو المدينة" />
+        <select id="city" class="select">
+          <option value="">كل المدن</option>
+          <option>أبها</option>
+          <option>رجال ألمع</option>
+        </select>
+      </div>
+      <div class="grid">
+        <div>
+          <div id="map" class="card" style="height: 360px; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1200&auto=format&fit=crop" alt="خريطة" style="width:100%; height: 100%; object-fit: cover; opacity: 0.7;" />
+          </div>
+        </div>
+        <div>
+          <div id="results" class="list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> عسير الحيّة</p>
+    </div>
+  </footer>
+
+  <script src="../scripts/data.js"></script>
+  <script>
+    const results = document.getElementById('results');
+    const search = document.getElementById('search');
+    const city = document.getElementById('city');
+
+    function render() {
+      results.innerHTML = '';
+      AsirData.museums
+        .filter(m => (search.value ? (m.name.includes(search.value) || m.city.includes(search.value)) : true))
+        .filter(m => (city.value ? m.city === city.value : true))
+        .forEach(m => {
+          const row = document.createElement('div');
+          row.className = 'list__item';
+          row.innerHTML = `
+            <img src="${m.images[0]}" alt="${m.name}" />
+            <div>
+              <div class="tile__title">${m.name}</div>
+              <div class="list__meta">${m.city} • ساعات العمل: ${m.hours} • التقييم ${m.rating}</div>
+              <div class="tile__actions"><a class="btn btn--primary" href="./museums.html#${m.id}">عرض</a></div>
+            </div>
+          `;
+          results.appendChild(row);
+        });
+    }
+    search.oninput = render; city.onchange = render; render();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
