@@ -1,93 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>عسير الحيّة — اكتشف، احجز، واشترِ</title>
-    <meta name="description" content="منصة تجمع المتاحف الخاصة والأسر المنتجة في عسير مع خريطة تفاعلية وحجز/شراء مباشر." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-    <header class="header">
-        <div class="container header__inner">
-            <div class="brand">
-                <span class="brand__logo">🌿</span>
-                <span class="brand__name">عسير الحيّة</span>
-            </div>
-            <nav class="nav">
-                <a href="./index.html" class="nav__link nav__link--active">الرئيسية</a>
-                <a href="./pages/map.html" class="nav__link">الخريطة</a>
-                <a href="./pages/museums.html" class="nav__link">المتاحف</a>
-                <a href="./pages/vendors.html" class="nav__link">الأسر المنتجة</a>
-                <a href="./pages/cart.html" class="nav__button">السلة/الحجوزات</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container hero__grid">
-                <div class="hero__text">
-                    <h1>تراث عسير — يُرى ويُعاش</h1>
-                    <p>
-                        اكتشف المتاحف الخاصة والأسر المنتجة في عسير، احجز تجارب تراثية حيّة، واشترِ منتجات محلية مباشرة من المجتمع.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="./pages/map.html" class="btn btn--primary">استكشف على الخريطة</a>
-                        <a href="./pages/vendors.html" class="btn">تسوّق من الأسر</a>
-                    </div>
-                </div>
-                <div class="hero__media">
-                    <div class="card card--overlay">
-                        <img src="https://images.unsplash.com/photo-1520975954732-35dd22f9f0f4?q=80&w=1200&auto=format&fit=crop" alt="تراث عسير" />
-                        <div class="card__overlay">
-                            <div>
-                                <strong>قصص حيّة</strong>
-                                <p>صور وصوت يعرضان حكايا المجتمع المحلي.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <h2 class="section__title">التجارب الأكثر شعبية</h2>
-                <div id="popular-experiences" class="grid"></div>
-            </div>
-        </section>
-
-        <section class="section section--muted">
-            <div class="container">
-                <h2 class="section__title">منتجات الأسر المنتجة</h2>
-                <div id="popular-products" class="grid"></div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer__inner">
-            <p>© <span id="year"></span> عسير الحيّة</p>
-            <div class="footer__links">
-                <a href="./pages/museums.html">المتاحف</a>
-                <a href="./pages/vendors.html">الأسر المنتجة</a>
-                <a href="./pages/map.html">الخريطة</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="./scripts/data.js"></script>
-    <script src="./scripts/app.js"></script>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        window.AsirApp.renderPopularExperiences();
-        window.AsirApp.renderPopularProducts();
-    </script>
-</body>
-</html>
-
-
